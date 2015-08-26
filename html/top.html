@@ -4,3 +4,32 @@
     {% style "css/top.css" %}
 {% endblock %}
 
+{% block mainnav %}
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{index-uri}}">{{title}}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li {% if home %} class="active" {% endif %}><a href="{{index-uri}}">Home</a></li>
+                <li><a href="http://summit.agroecolo.gy/">Summit</a></li>
+                <li><a href="http://journal.agroecolo.gy/">Journal</a></li>
+                <li><a href="http://blog.agroecolo.gy/">Blog</a></li>
+                {% for nav-page in navbar-pages %}
+                <li
+                {%ifequal page.uri nav-page.uri %} class="active" {% endifequal %}>
+                <a href="{{nav-page.uri}}">{{nav-page.title}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+{% endblock %}
